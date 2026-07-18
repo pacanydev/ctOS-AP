@@ -1,4 +1,3 @@
-# ctOS-AP
-ctOS - Admin Panel for central operating system
+# ctOS | Admin Panel
 
-Tommorow
+Litterally admin panel with sync over mysqloo. Big brother is watching you.
