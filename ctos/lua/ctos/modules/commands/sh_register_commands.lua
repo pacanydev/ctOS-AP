@@ -16,7 +16,7 @@ function ctOS.Modules.RegisterCommand(group,cmds)
     return true
 end
 
-function ctOS.Modules.AutoComplete(command,parameter)
+function ctOS.Modules.AutoComplete(command, parameter)
     local parameters = {}
 
     for _, v in ipairs(parameter:Split(' ')) do
@@ -25,25 +25,17 @@ function ctOS.Modules.AutoComplete(command,parameter)
         end
     end
 
-    if #parameters == 0 then 
-        local list_autocomplete = {}
-        for k,v in pairs(ctOS.Commands.AutoComplete) do 
-            list_autocomplete[#list_autocomplete+1] = command..' '..k
-        end
-        return list_autocomplete
-    end
-    
-    if ctOS.Commands.AutoComplete[parameters[1]:lower()] then
-        local list_autocomplete = {}
-        for k,v in pairs(ctOS.Commands.AutoComplete) do 
-            if v:lower():StartsWith(parameters[1]:lower()) then
-                list_autocomplete[#list_autocomplete+1] = command..' '..k
-            end
-        end
-        return list_autocomplete
-    else
+    local prefix = (parameters[1] or ''):lower()
 
+    local list_autocomplete = {}
+    for name, group in pairs(ctOS.Commands.AutoComplete) do
+        if prefix == '' or name:StartsWith(prefix) then
+            list_autocomplete[#list_autocomplete + 1] = command .. ' ' .. name
+        end
     end
+
+    table.sort(list_autocomplete)
+    return list_autocomplete
 end
 
 concommand.Add("ct", function(ply, cmd, args)
