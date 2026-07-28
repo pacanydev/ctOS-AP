@@ -13,3 +13,8 @@
 > **You are watched, You are protected, You are loved.**
 
 ---
+
+Goals 
+1. Make some methods (connected with players) thru playermeta
+2. Make UI   
+3. Make modules for future use
