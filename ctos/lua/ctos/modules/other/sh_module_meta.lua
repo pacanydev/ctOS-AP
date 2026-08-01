@@ -31,6 +31,7 @@ function MODULE:Create(data)
     
     local new_module = setmetatable({},self)
 
+    new_module.enabled = true
     new_module.name = data.name
     new_module.permission = (data.permission or data.group..'.'..data.name) // will need check in the future!
     new_module.description = data.description
