@@ -76,9 +76,17 @@ function ctOS.Modules.RestartAll()
     end
 end
 
-function ctOS.Modules.IsModuleEnabled(name) 
-    if !ctOS.Modules[name] then return false end
-    return ctOS.Modules[name].enabled
+function ctOS.Modules.IsModuleEnabled(name)
+    local mod = ctOS.Modules.Modules[name]
+    if not mod then return false end
+    return mod.enabled ~= false
+end
+
+function ctOS.Modules.SetEnabled(name, state)
+    local mod = ctOS.Modules.Modules[name]
+    if not mod then return false end
+    mod.enabled = state
+    return true
 end
 
 //ctOS.Modules.RestartAll()
